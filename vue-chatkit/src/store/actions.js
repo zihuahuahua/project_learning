@@ -25,11 +25,11 @@ export default {
         id: room.id,
         name: room.name
       }))
-      console.log(rooms,'==rooms==')
+      console.log(rooms, '==rooms==')
       commit('setRooms', rooms)
       // 给用户分配房间
       const activeRoom = state.activeRoom || rooms[0]
-      commit('setActiveRoom',{
+      commit('setActiveRoom', {
         id: activeRoom.id,
         name: activeRoom.name
       })
@@ -41,6 +41,14 @@ export default {
       handleError(commit, error)
     } finally {
       commit('setLoading', false)
+    }
+  },
+  async changeRoom({ commit }, roomId) {
+    try {
+      const { id, name } = await chatkit.subscribeToRoom(roomId)
+      commit('setActiveRoom', { id, name })
+    } catch (error) {
+      handleError(commit, error)
     }
   }
 }
