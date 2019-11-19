@@ -20,13 +20,13 @@ async function connectUser(userId) {
 }
 
 function setMembers() {
-  console.log(activeRoom, '==activeRoom==')
+  // console.log(activeRoom, '==activeRoom==')
   const members = activeRoom.users.map(user => ({
     username: user.id,
     name: user.name,
     presence: user.presence.state
   }))
-  console.log(members, '==members==')
+  // console.log(members, '==members==')
   store.commit('setUsers', members)
 }
 
@@ -45,7 +45,7 @@ async function subscribeToRoom(roomId) {
       onMessage: message => {
         store.commit('addMessage', {
           name: message.sender.name,
-          username: message.sendId,
+          username: message.senderId,
           text: message.text,
           date: moment(message.createdAt).format('h:mm:ss a D-MM-YYYY')
         })
@@ -54,7 +54,7 @@ async function subscribeToRoom(roomId) {
         setMembers()
       },
       onUserStartedTyping: user => {
-        console.log(user,'==user==')
+        console.log(user, '==user==')
         store.commit('setUserTyping', user.id)
       },
       onUserStoppedTyping: () => {
@@ -66,4 +66,24 @@ async function subscribeToRoom(roomId) {
   return activeRoom
 }
 
-export default { connectUser, subscribeToRoom }
+async function sendMessage(text) {
+  const messageId = await currentUser.sendMessage({
+    text,
+    roomId: activeRoom.id
+  })
+  return messageId
+}
+
+export function isTyping(roomId) {
+  currentUser.isTypingIn({ roomId })
+}
+
+function disconnectUser() {
+  currentUser.disconnect()
+}
+export default {
+  connectUser,
+  subscribeToRoom,
+  sendMessage,
+  disconnectUser
+}

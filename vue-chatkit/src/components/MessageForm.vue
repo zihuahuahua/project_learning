@@ -1,6 +1,8 @@
 <template>
   <div class="message-form ld-over">
-    <small class="text-muted">@{{user.username}}</small>
+    <div class="clearfix">
+      <small class="text-muted float-left">@{{user.username}}</small>
+    </div>
     <b-form @submit.prevent="onSubmit"
             class="ld-over"
             v-bind:class="{running:sending}">
@@ -11,6 +13,7 @@
         <b-form-input id="message-input"
                       type="text"
                       v-model="message"
+                      @input="isTyping"
                       placeholder="Enter Message"
                       autocomplete="off"
                       required>
@@ -25,15 +28,16 @@
   </div>
 </template>
 <script>
-  import { mapState, mapGetters } from 'vuex'
+  import { mapState, mapGetters, mapActions } from 'vuex'
+  import { isTyping } from '../chatkit.js'
   export default {
     name: 'MessageForm',
-    data(){
+    data() {
       return {
         message: ''
       }
     },
-    computed:{
+    computed: {
       ...mapState([
         'user',
         'sending',
@@ -43,6 +47,18 @@
       ...mapGetters([
         'hasError'
       ])
+    },
+    methods: {
+      ...mapActions([
+        'sendMessage'
+      ]),
+      async onSubmit() {
+        const result = await this.sendMessage(this.message)
+        if (result) this.message = ''
+      },
+      async isTyping() {
+        await isTyping(this.activeRoom.id)
+      }
     }
   }
 </script>
