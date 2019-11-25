@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { AngularFireLite } from 'angularfire-lite'
+// import { AngularFireLite } from 'angularfire-lite'
 import { environment } from '../environments/environment';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { FormsModule } from '@angular/forms';
@@ -28,7 +28,7 @@ import { ErrorComponent } from './components/error/error.component';
     HttpClientModule,
     NguiAutoCompleteModule,
     FormsModule,
-    AngularFireLite.forRoot(environment.config),
+    // AngularFireLite.forRoot(environment.config),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],

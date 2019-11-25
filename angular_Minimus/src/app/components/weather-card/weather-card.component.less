@@ -35,9 +35,69 @@
       font-weight: 100;
       letter-spacing: 0.1rem;
     }
+    .temperature-metric_text{
+      text-align: start;
+      font-size: 3rem;
+    }
+  }
+  .min-max_container{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    .min_container,.max_container{
+      margin: 1rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      .min-arrow_icon, .max-arrow_icon{
+        height: 1.25rem;
+        margin: auto;
+      }
+      .max-arrow_icon{
+        margin-bottom: -0.05rem;
+      }
+      .min-temperature_text,.max-temperature_text{
+        text-align: center;
+        font-size: 2rem;
+      }
+      .min_text{
+        color: #00ff9b;
+      }
+      .max_text{
+        color: #ff0070;
+      }
+    }
+    .add-city-btn{
+      outline: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 3rem;
+      padding: 1rem 3rem;
+      color: #fff;
+      margin-top: 2rem;
+      background: #2b244d;
+      font-size: 1rem;
+      font-weight: bold;
+      &:hover{
+        background: #31feae;
+      }
+    }
   }
 }
 
 .weather_card-dark{
   background: linear-gradient(to bottom, #711b86,#000);
+}
+
+.city-added-note{
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  animation: fadein 1s ease-in-out;
+  .add-success-text{
+    font-size: 1.25rem;
+  }
 }

@@ -16,7 +16,7 @@ export class AppComponent implements OnInit,OnDestroy{
 
   constructor(public ui:UiService,public fb:FbService,public router: Router){}
   
-  loggedIn = this.fb.isAuth()
+  // loggedIn = this.fb.isAuth()
   sub1;
 
   ngOnInit(){
@@ -24,9 +24,9 @@ export class AppComponent implements OnInit,OnDestroy{
       this.darkModeActive = val
     })
 
-    this.fb.auth.userData().subscribe(user=>{
-      this.userEmail = user.email
-    })
+    // this.fb.auth.userData().subscribe(user=>{
+    //   this.userEmail = user.email
+    // })
   }
 
   toggleMenu(){
@@ -44,6 +44,6 @@ export class AppComponent implements OnInit,OnDestroy{
   logout() {
     this.toggleMenu()
     this.router.navigateByUrl('/login')
-    this.fb.auth.signout()
+    // this.fb.auth.signout()
   }
 }
