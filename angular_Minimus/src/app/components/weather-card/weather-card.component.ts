@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router'
-import { WeatherService } from '../../services/weather/weather.services'
-import { UiService } from '../../services/ui/ui.services'
-import { Subscription } from 'rxjs'
-import { first } from 'rxjs/operators'
-import { FbService } from '../../services/fb/fb.services'
+import { Router } from '@angular/router';
+import { WeatherService } from '../../services/weather/weather.services';
+import { UiService } from '../../services/ui/ui.services';
+import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
+import { FbService } from '../../services/fb/fb.services';
 
 @Component({
   selector: 'app-weather-card',
@@ -34,14 +34,14 @@ export class WeatherCardComponent implements OnInit, OnDestroy {
         for (const res of payload) {
           if (new Date().toLocaleDateString('en-GB') === new Date(res.dt_txt).toLocaleDateString('en-GB')) {
             this.maxTemp = res.main.temp > this.maxTemp ? Math.round(res.main.temp) : this.maxTemp
-            this.minTemp = res.main.temp > this.minTemp ? Math.round(res.main.temp) : this.minTemp
+            this.minTemp = res.main.temp < this.minTemp ? Math.round(res.main.temp) : this.minTemp
           }
         }
       }, err => {
         this.errorMessage = err.error.message
         setTimeout(() => {
           this.errorMessage = ''
-        }, 3000);
+        }, 3000)
       })
   }
 
