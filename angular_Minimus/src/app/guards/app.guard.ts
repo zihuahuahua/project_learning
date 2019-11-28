@@ -11,18 +11,18 @@ import { map } from 'rxjs/operators'
 export class AppGuard  {
   constructor(public fb: FbService, public router: Router) { }
 
-  // canActivate(
-  //   route: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot): Observable<boolean> | boolean {
-  //   return this.fb.isAuth().pipe(map(
-  //     auth => {
-  //       if (auth) {
-  //         return true
-  //       } else {
-  //         this.router.navigate(['/login'])
-  //         return false
-  //       }
-  //     }
-  //   ))
-  // }
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean> | boolean {
+    return this.fb.isAuth().pipe(map(
+      auth => {
+        if (auth) {
+          return true
+        } else {
+          this.router.navigate(['/login'])
+          return false
+        }
+      }
+    ))
+  }
 }

@@ -77,15 +77,15 @@ export class WeatherCardComponent implements OnInit, OnDestroy {
   }
 
   addCity() {
-    // this.fb.addCity(this.cityName).subscribe(() => {
-    //   this.cityName = null;
-    //   this.maxTemp = null;
-    //   this.minTemp = null;
-    //   this.state = null;
-    //   this.temp = null;
-    //   this.cityAdded = true;
-    //   this.cityStored.emit();
-    //   setTimeout(() => this.cityAdded = false, 2000);
-    // });
+    this.fb.addCity(this.cityName).subscribe(() => {
+      this.cityName = null;
+      this.maxTemp = null;
+      this.minTemp = null;
+      this.state = null;
+      this.temp = null;
+      this.cityAdded = true;
+      this.cityStored.emit();
+      setTimeout(() => this.cityAdded = false, 2000);
+    });
   }
 }
