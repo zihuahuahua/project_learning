@@ -14,7 +14,7 @@ import { FbService } from '../../services/fb/fb.services';
 export class WeatherCardComponent implements OnInit, OnDestroy {
 
   @Input() set city(city: string) {
-    console.log(city)
+    console.log(city,'==city==')
     this.cityName = city
     this.weather.getWeather(city)
       .pipe(first())
