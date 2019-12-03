@@ -13,6 +13,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { WeatherCardComponent } from './components/weather-card/weather-card.component';
 import { AddCardComponent } from './components/add-card/add-card.component';
 import { ErrorComponent } from './components/error/error.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ErrorComponent } from './components/error/error.component';
     HomeComponent,
     WeatherCardComponent,
     AddCardComponent,
-    ErrorComponent
+    ErrorComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
