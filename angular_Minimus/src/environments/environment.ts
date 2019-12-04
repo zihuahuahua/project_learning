@@ -6,7 +6,14 @@ export const environment = {
   production: false,
   appID: '',
   config: {
-    
+    apiKey: "AIzaSyCZaVI2M96FCvEwB5ZcpqaE8WxDcORKUps",
+    authDomain: "angular-minimus.firebaseapp.com",
+    databaseURL: "https://angular-minimus.firebaseio.com",
+    projectId: "angular-minimus",
+    storageBucket: "angular-minimus.appspot.com",
+    messagingSenderId: "304203343454",
+    appId: "1:304203343454:web:859ae16ab6585e499e36cf",
+    measurementId: "G-GX9P3YTZRG"
   }
 };
 
